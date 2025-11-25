@@ -4,7 +4,7 @@ The official implementation of the "Dual-branch Spatial-Temporal self-supervised
 
 ## Overview of the framework
 
-![image](https://github.com/chaser-gua/DST/blob/master/method.png)
+![image](https://github.com/chaser-gua/DST/blob/master/framework.png)
 
 The overview of the proposed DST framework. The high-order relationships are modeled via mix-hop transition matrix weighting and multi-view graph contrastive learning. The temporal travel traffic dynamics are integrated by the Transformer with two specific task-driven updates. Both block co-enhanced representations power downstream tasks jointly.
 
