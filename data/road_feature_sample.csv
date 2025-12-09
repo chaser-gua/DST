@@ -1,0 +1,2 @@
+road_id,lon_grid,lat_grid,tunnel_info,bridge_info,lanes_info,length_info,maxspeed_info,in_degree,out_degree,utils,highway_info,oneway_info
+0,27,20,0,0,2,0,3,2,2,730,3,0
