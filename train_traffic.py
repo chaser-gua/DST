@@ -48,11 +48,6 @@ def setup_seed(seed: int) -> None:
 
 
 class FixedLengthDataset(Dataset):
-    """
-    data: Tensor, shape (num_samples, 24)
-    seq_id: LongTensor, shape (num_samples,)
-    seq_cls: LongTensor, shape (num_samples,)
-    """
 
     def __init__(self, data: torch.Tensor, seq_id: torch.Tensor, seq_cls: torch.Tensor, device: str):
         self.data = data
@@ -75,10 +70,6 @@ class FixedLengthDataset(Dataset):
 
 
 class PositionalEncodingBatchFirst(nn.Module):
-    """
-    Batch-first positional encoding.
-    Input x: (B, T, E)
-    """
 
     def __init__(self, dim: int, dropout: float = 0.1, max_len: int = 30000):
         super(PositionalEncodingBatchFirst, self).__init__()
@@ -135,10 +126,6 @@ class MaskedTransformer_1(nn.Module):
         return torch.triu(torch.full((sz, sz), float("-inf")), diagonal=1)
 
     def forward(self, x: torch.Tensor, padding_mask: Optional[torch.Tensor] = None):
-        # x: (B, T)
-        x = x.unsqueeze(-1)  # (B, T, 1)
-        x = self.input_embed(x) * math.sqrt(self.d_model)  # (B, T, d_model)
-        x = self.pos_encoder(x)  # (B, T, d_model)
 
         sequence_rep = self.encoder(
             x,
@@ -156,11 +143,6 @@ class MaskedTransformer_1(nn.Module):
 
 
 def masked_mse_1(pred: torch.Tensor, target: torch.Tensor, padding_mask: torch.Tensor) -> torch.Tensor:
-    """
-    pred: (B, T, 1)
-    target: (B, T) or (B, T, 1)
-    padding_mask: (B, T) True indicates masked/padded positions
-    """
     if target.dim() == 2:
         target = target.unsqueeze(-1)
 
